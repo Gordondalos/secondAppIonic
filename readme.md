@@ -15,3 +15,7 @@
 
 cordova platform add android
 cordova platform add ios
+
+делал это 
+
+https://www.youtube.com/watch?v=ilM8YorL_jI
