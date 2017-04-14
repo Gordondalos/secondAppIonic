@@ -15,6 +15,8 @@ import { SettingsModule } from "../pages/settings/settings.module";
 import { RedditsService } from "./service/reddits.service";
 import { HttpModule } from "@angular/http";
 import { DetailPageModule } from "../pages/detail-page/detail-page.module";
+import { WrapperContentComponent } from "../common/wrapper-content.component";
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { DetailPageModule } from "../pages/detail-page/detail-page.module";
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+
+    WrapperContentComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +34,7 @@ import { DetailPageModule } from "../pages/detail-page/detail-page.module";
     SettingsModule,
     HttpModule,
     DetailPageModule,
+
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -44,6 +49,7 @@ import { DetailPageModule } from "../pages/detail-page/detail-page.module";
     StatusBar,
     SplashScreen,
     RedditsService,
+
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
