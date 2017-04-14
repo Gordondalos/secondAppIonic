@@ -17,6 +17,7 @@ import { HttpModule } from "@angular/http";
 import { DetailPageModule } from "../pages/detail-page/detail-page.module";
 import { WrapperComponent } from "../common/w-component/wrapper-content";
 import { WrapperContentModule } from "../common/w-component/wrpper-content.module";
+import { CommonService } from "./service/common.service";
 
 @NgModule ( {
     declarations : [
@@ -47,6 +48,7 @@ import { WrapperContentModule } from "../common/w-component/wrpper-content.modul
         StatusBar,
         SplashScreen,
         RedditsService,
+        CommonService,
         { provide : ErrorHandler, useClass : IonicErrorHandler }
     ]
 } )

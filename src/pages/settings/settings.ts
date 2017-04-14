@@ -1,25 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RedditsService } from "../../app/service/reddits.service";
 import { Reddits } from "../reddits/reddits";
+import { CommonService } from "../../app/service/common.service";
 
-/**
- * Generated class for the Settings page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 @IonicPage ()
 @Component ( {
     selector : 'page-settings',
     templateUrl : 'settings.html',
 } )
-export class Settings {
+export class Settings implements OnInit{
 
     category : any;
     limit : any;
 
-    constructor ( public navCtrl : NavController, private redditsService : RedditsService ) {
+    ngOnInit(){
+        // console.log(this.navCtrl);
+    }
+
+
+    ionViewWillEnter () {
+        this.commonService.setTitleInHeaderFunction(this.navCtrl[ 'tabTitle' ]);
+    }
+
+
+
+    constructor (
+        public commonService: CommonService,
+        public navCtrl : NavController, private redditsService : RedditsService ) {
         this.getDefaults ();
     }
 

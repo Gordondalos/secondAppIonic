@@ -1,7 +1,10 @@
 
 <w-content>
 	<ion-card>
-		<img src="{{ item.preview.images[0].source.url }}"/>
+		<div *ngIf="item.preview.images[0].source.url.indexOf('.jpg') !== -1">
+			<img src="{{ item.preview.images[0].source.url }}"/>
+		</div>
+
 		<ion-card-content>
 			<ion-card-title>
 				{{ item.title }}

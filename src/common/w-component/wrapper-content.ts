@@ -1,19 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from "ionic-angular";
+import { NavController, Platform } from "ionic-angular";
+import { CommonService } from "../../app/service/common.service";
+import { Reddits } from "../../pages/reddits/reddits";
 
-@Component({
-    selector: 'w-content',
-    templateUrl: 'wrapper.component.html'
-})
+@Component ( {
+    selector : 'w-content',
+    templateUrl : 'wrapper.component.html'
+} )
 export class WrapperComponent implements OnInit {
 
-    title: string;
+    title : string;
 
-    constructor(public navCtrl: NavController) { }
+    constructor (
+        public platform: Platform,
+        public navCtrl : NavController, public commonService : CommonService ) {
+        this.commonService.setTitleInHeader$.subscribe ( data => {
+            this.setThisTitle(data);
 
-    ngOnInit() {
-        console.log(this.navCtrl);
-        this.title = this.navCtrl['tabTitle'];
+        } )
+    }
+
+
+    setThisTitle ( title ) {
+        this.title = title;
+    }
+
+    goBack(){
+        this.setThisTitle ( this.navCtrl[ 'tabTitle' ] );
+        this.navCtrl.pop();
+    }
+
+
+
+
+
+
+    ngOnInit () {
+        this.setThisTitle ( this.navCtrl[ 'tabTitle' ] )
     }
 
 }
