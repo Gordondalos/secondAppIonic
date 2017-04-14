@@ -15,36 +15,40 @@ import { SettingsModule } from "../pages/settings/settings.module";
 import { RedditsService } from "./service/reddits.service";
 import { HttpModule } from "@angular/http";
 import { DetailPageModule } from "../pages/detail-page/detail-page.module";
+import { WrapperComponent } from "../common/w-component/wrapper-content";
+import { WrapperContentModule } from "../common/w-component/wrpper-content.module";
 
-@NgModule({
-  declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  imports: [
-    BrowserModule,
-    RedditsModule,
-    SettingsModule,
-    HttpModule,
-    DetailPageModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    RedditsService,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
-})
-export class AppModule {}
+@NgModule ( {
+    declarations : [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage,
+    ],
+    imports : [
+        BrowserModule,
+        RedditsModule,
+        SettingsModule,
+        HttpModule,
+        DetailPageModule,
+        WrapperContentModule,
+        IonicModule.forRoot ( MyApp )
+    ],
+    bootstrap : [ IonicApp ],
+    entryComponents : [
+        MyApp,
+        AboutPage,
+        ContactPage,
+        HomePage,
+        TabsPage
+    ],
+    providers : [
+        StatusBar,
+        SplashScreen,
+        RedditsService,
+        { provide : ErrorHandler, useClass : IonicErrorHandler }
+    ]
+} )
+export class AppModule {
+}
