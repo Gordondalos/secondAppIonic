@@ -22,6 +22,15 @@ import { IntroModule } from "../pages/intro/intro.module";
 import { ChecklistModule } from "../pages/checklist/checklist.module";
 import { Data } from "../providers/data";
 import { IonicStorageModule } from "@ionic/storage";
+import { SimpleAlert } from "../providers/simple-alert";
+import { FotoProvider } from "../providers/foto-provider";
+import { SlideshowModule } from "../pages/slideshow/slideshow.module";
+import { DaysAgo } from "../pipes/days-ago";
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { Camera } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { SocialSharing } from '@ionic-native/social-sharing';
+
 
 
 
@@ -35,6 +44,7 @@ import { IonicStorageModule } from "@ionic/storage";
         ContactPage,
         HomePage,
         TabsPage,
+        DaysAgo,
 
 
     ],
@@ -47,6 +57,8 @@ import { IonicStorageModule } from "@ionic/storage";
         WrapperContentModule,
         IonicStorageModule.forRoot(),
         IntroModule,
+        SlideshowModule,
+
         ChecklistModule,
         IonicModule.forRoot ( MyApp )
     ],
@@ -64,7 +76,15 @@ import { IonicStorageModule } from "@ionic/storage";
         RedditsService,
         CommonService,
         Keyboard,
+        SimpleAlert,
+        FotoProvider,
         Data,
+        LocalNotifications,
+        File,
+        Camera,
+        SocialSharing,
+
+
         { provide : ErrorHandler, useClass : IonicErrorHandler }
     ]
 } )

@@ -30,34 +30,41 @@ export class HomePage {
                   public commonService : CommonService,
                   public navCtrl : NavController ) {
         this.nav = navCtrl;
-        //this.storage.clear()
+        // this.storage.clear()
 
     }
 
     ionViewWillEnter () {
         this.commonService.setTitleInHeaderFunction ( this.navCtrl[ 'tabTitle' ] );
 
+
     }
 
     ionViewDidLoad () {
-        this.platform.ready ().then ( () => {
-            this.dataService.getData ().then ( ( checklists ) => {
-                let savedChecklists : any = false;
-                if ( typeof(checklists) != "undefined" ) {
-                    savedChecklists = JSON.parse ( checklists );
+        this.platform.ready().then(() => {
+            this.storage.get('introShown').then((result) => {
+                if(!result){
+                    this.storage.set('introShown', true);
+                    this.nav.setRoot(Intro);
                 }
-                if ( savedChecklists ) {
-                    savedChecklists.forEach ( ( savedChecklist ) => {
-                        let loadChecklist = new ChecklistModel ( savedChecklist.title,
-                            savedChecklist.items );
-                        this.checklists.push ( loadChecklist );
-                        loadChecklist.checklistUpdates ().subscribe ( update => {
-                            this.save ();
-                        } );
-                    } );
+            });
+            this.dataService.getData().then((checklists) => {
+                let savedChecklists: any = false;
+                if(typeof(checklists) != "undefined"){
+                    savedChecklists = JSON.parse(checklists);
                 }
-            } );
-        } );
+                if(savedChecklists){
+                    savedChecklists.forEach((savedChecklist) => {
+                        let loadChecklist = new ChecklistModel(savedChecklist.title,
+                            savedChecklist.items);
+                        this.checklists.push(loadChecklist);
+                        loadChecklist.checklistUpdates().subscribe(update => {
+                            this.save();
+                        });
+                    });
+                }
+            });
+        });
 
     }
 
