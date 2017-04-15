@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-
 import { CommonService } from "../../app/service/common.service";
-
 import { NavController, AlertController, Platform } from 'ionic-angular';
 
 
@@ -9,6 +7,9 @@ import { Data } from '../../providers/data';
 import { Keyboard } from '@ionic-native/keyboard';
 import { Checklist } from "../checklist/checklist";
 import { ChecklistModel } from "../checklist/checklist-model";
+
+import { Intro } from '../intro/intro';
+import { Storage } from '@ionic/storage';
 
 import * as _ from 'lodash';
 
@@ -22,18 +23,19 @@ export class HomePage {
     nav : NavController;
 
     constructor ( public dataService : Data,
+                  public storage: Storage,
                   public alertCtrl : AlertController,
                   public platform : Platform,
                   public keyboard : Keyboard,
                   public commonService : CommonService,
                   public navCtrl : NavController ) {
         this.nav = navCtrl;
+        //this.storage.clear()
 
     }
 
     ionViewWillEnter () {
         this.commonService.setTitleInHeaderFunction ( this.navCtrl[ 'tabTitle' ] );
-
 
     }
 

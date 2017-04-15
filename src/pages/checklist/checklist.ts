@@ -16,9 +16,10 @@ export class Checklist {
     }
 
     addItem () : void {
+
         let prompt = this.alertCtrl.create ( {
-            title : 'Add Item',
-            message : 'Enter the name of the task for this checklist below:',
+            title : 'Добавить дело',
+            message : 'Введите название ниже:',
             inputs : [
                 {
                     name : 'name'
@@ -26,10 +27,10 @@ export class Checklist {
             ],
             buttons : [
                 {
-                    text : 'Cancel'
+                    text : 'Отмена'
                 },
                 {
-                    text : 'Save',
+                    text : 'Сохранить',
                     handler : data => {
                         this.checklist.addItem ( data.name );
                     }
@@ -49,8 +50,8 @@ export class Checklist {
 
     renameItem ( item ) : void {
         let prompt = this.alertCtrl.create ( {
-            title : 'Rename Item',
-            message : 'Enter the new name of the task for this checklist below:',
+            title : 'Переименовать',
+            message : 'Исправьте название',
             inputs : [
                 {
                     name : 'name'
@@ -58,10 +59,10 @@ export class Checklist {
             ],
             buttons : [
                 {
-                    text : 'Cancel'
+                    text : 'Отмена'
                 },
                 {
-                    text : 'Save',
+                    text : 'Сохранить',
                     handler : data => {
                         this.checklist.renameItem ( item, data.name );
                     }

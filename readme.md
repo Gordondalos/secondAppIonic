@@ -71,6 +71,11 @@ WKWebView это плагин для Ios устройств то же самое
 <preference name="CordovaWebViewEngine" value="CDVWKWebViewEngine" />
 
 
+Вот так можно почистить локальный строраж
+
+    this.storage.clear()
+
+
 ###Вот таким образом можно получить файковые данные 
      
      constructor(public http: Http) {
