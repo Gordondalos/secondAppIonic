@@ -15,7 +15,7 @@ import * as _ from 'lodash';
 @Component ( {
     selector : 'page-home',
     templateUrl : 'home.html',
-    providers: [Keyboard]
+    providers : [ Keyboard ]
 } )
 export class HomePage {
 
@@ -33,102 +33,123 @@ export class HomePage {
 
     ionViewWillEnter () {
         this.commonService.setTitleInHeaderFunction ( this.navCtrl[ 'tabTitle' ] );
+
+
     }
 
     ionViewDidLoad () {
+        this.platform.ready ().then ( () => {
+            this.dataService.getData ().then ( ( checklists ) => {
+                let savedChecklists : any = false;
+                if ( typeof(checklists) != "undefined" ) {
+                    savedChecklists = JSON.parse ( checklists );
+                }
+                if ( savedChecklists ) {
+                    savedChecklists.forEach ( ( savedChecklist ) => {
+                        let loadChecklist = new ChecklistModel ( savedChecklist.title,
+                            savedChecklist.items );
+                        this.checklists.push ( loadChecklist );
+                        loadChecklist.checklistUpdates ().subscribe ( update => {
+                            this.save ();
+                        } );
+                    } );
+                }
+            } );
+        } );
 
     }
 
-    checklists:any=[];
+    checklists : any = [];
 
     addChecklist () : void {
-        let prompt = this.alertCtrl.create({
-            title: 'Новое дело',
-            message: 'Введите то что нужно проверить',
-            inputs: [
+        let prompt = this.alertCtrl.create ( {
+            title : 'Новое дело',
+            message : 'Введите то что нужно проверить',
+            inputs : [
                 {
-                    name: 'name'
+                    name : 'name'
                 }
             ],
-            buttons: [
+            buttons : [
                 {
-                    text: 'Отменить'
+                    text : 'Отменить'
                 },
                 {
-                    text: 'Сохранить',
-                    handler: data => {
-                        let newChecklist = new ChecklistModel(data.name, []);
-                        this.checklists.push(newChecklist);
-                        newChecklist.checklistUpdates().subscribe(update => {
-                            this.save();
-                        });
-                        this.save();
+                    text : 'Сохранить',
+                    handler : data => {
+                        let newChecklist = new ChecklistModel ( data.name, [] );
+                        this.checklists.push ( newChecklist );
+                        newChecklist.checklistUpdates ().subscribe ( update => {
+                            this.save ();
+                        } );
+                        this.save ();
                     }
                 }
             ]
-        });
-        prompt.present();
+        } );
+        prompt.present ();
     }
 
-    ionSwipe(event){
-        console.log(event);
+    ionSwipe ( event ) {
+        console.log ( event );
     }
 
-    renameChecklist(checklist,item): void {
+    renameChecklist ( checklist, item ) : void {
 
 
+        let prompt = this.alertCtrl.create ( {
+            title : 'Изменение чеклиста',
+            message : 'Введите новое имя',
 
-        let prompt = this.alertCtrl.create({
-            title: 'Изменение чеклиста',
-            message: 'Введите новое имя',
-
-            inputs: [
+            inputs : [
                 {
-                    name: 'name',
-                    value: checklist.title
+                    name : 'name',
+                    value : checklist.title
                 }
             ],
-            buttons: [
+            buttons : [
                 {
-                    text: 'Отмена'
+                    text : 'Отмена'
                 },
                 {
-                    text: 'Сохранить',
-                    handler: data => {
-                        let index = this.checklists.indexOf(checklist);
-                        if(index > -1){
-                            this.checklists[index].setTitle(data.name);
-                            this.save(item);
+                    text : 'Сохранить',
+                    handler : data => {
+                        let index = this.checklists.indexOf ( checklist );
+                        if ( index > -1 ) {
+                            this.checklists[ index ].setTitle ( data.name );
+                            this.save ( item );
                         }
                     }
                 }
             ]
-        });
-        prompt.present();
+        } );
+        prompt.present ();
     }
 
-    viewChecklist(checklist): void {
-        this.nav.push(Checklist, {
-            checklist: checklist
-        });
+    viewChecklist ( checklist ) : void {
+        this.nav.push ( Checklist, {
+            checklist : checklist
+        } );
     }
 
-    logDrag(event){
-       // console.log(event);
+    logDrag ( event ) {
+        // console.log(event);
     }
 
-    removeChecklist(checklist): void{
-        let index = this.checklists.indexOf(checklist);
-        if(index > -1){
-            this.checklists.splice(index, 1);
-            this.save();
+    removeChecklist ( checklist ) : void {
+        let index = this.checklists.indexOf ( checklist );
+        if ( index > -1 ) {
+            this.checklists.splice ( index, 1 );
+            this.save ();
         }
     }
 
-    save (item: any = {} ) : void {
-        if(!_.isEmpty(item)){
-            item.close();
+    save ( item : any = {} ) : void {
+        if ( !_.isEmpty ( item ) ) {
+            item.close ();
         }
+        this.keyboard.close ();
+        this.dataService.save ( this.checklists );
     }
 
 }

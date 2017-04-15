@@ -21,6 +21,8 @@ import { CommonService } from "./service/common.service";
 import { IntroModule } from "../pages/intro/intro.module";
 import { ChecklistModule } from "../pages/checklist/checklist.module";
 import { Data } from "../providers/data";
+import { IonicStorageModule } from "@ionic/storage";
+
 
 
 
@@ -43,6 +45,7 @@ import { Data } from "../providers/data";
         HttpModule,
         DetailPageModule,
         WrapperContentModule,
+        IonicStorageModule.forRoot(),
         IntroModule,
         ChecklistModule,
         IonicModule.forRoot ( MyApp )
