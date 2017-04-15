@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, Keyboard } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -15,9 +15,16 @@ import { SettingsModule } from "../pages/settings/settings.module";
 import { RedditsService } from "./service/reddits.service";
 import { HttpModule } from "@angular/http";
 import { DetailPageModule } from "../pages/detail-page/detail-page.module";
-import { WrapperComponent } from "../common/w-component/wrapper-content";
+// import { WrapperComponent } from "../common/w-component/wrapper-content";
 import { WrapperContentModule } from "../common/w-component/wrpper-content.module";
 import { CommonService } from "./service/common.service";
+import { IntroModule } from "../pages/intro/intro.module";
+import { ChecklistModule } from "../pages/checklist/checklist.module";
+import { Data } from "../providers/data";
+
+
+
+
 
 @NgModule ( {
     declarations : [
@@ -26,6 +33,8 @@ import { CommonService } from "./service/common.service";
         ContactPage,
         HomePage,
         TabsPage,
+
+
     ],
     imports : [
         BrowserModule,
@@ -34,6 +43,8 @@ import { CommonService } from "./service/common.service";
         HttpModule,
         DetailPageModule,
         WrapperContentModule,
+        IntroModule,
+        ChecklistModule,
         IonicModule.forRoot ( MyApp )
     ],
     bootstrap : [ IonicApp ],
@@ -49,6 +60,8 @@ import { CommonService } from "./service/common.service";
         SplashScreen,
         RedditsService,
         CommonService,
+        Keyboard,
+        Data,
         { provide : ErrorHandler, useClass : IonicErrorHandler }
     ]
 } )
