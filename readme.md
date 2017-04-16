@@ -171,3 +171,18 @@ https://www.youtube.com/watch?v=ilM8YorL_jI
     }
     
     подробнее посмотри тут http://ionicframework.com/docs/native/
+
+
+компиляция приложения
+ionic platform add android
+ ionic build android
+ 
+ залить на девайс так
+ ionic run android
+ или так cordova run android --device
+
+ 
+ проверка подключеных девайсов чтобы узнать его id
+ adb devices
+
+
