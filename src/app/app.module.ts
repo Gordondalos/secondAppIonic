@@ -23,13 +23,14 @@ import { ChecklistModule } from "../pages/checklist/checklist.module";
 import { Data } from "../providers/data";
 import { IonicStorageModule } from "@ionic/storage";
 import { SimpleAlert } from "../providers/simple-alert";
-import { FotoProvider } from "../providers/foto-provider";
+import { FotoService } from "../providers/foto-provider";
 import { SlideshowModule } from "../pages/slideshow/slideshow.module";
 import { DaysAgo } from "../pipes/days-ago";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Camera } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { PhotosModule } from "../pages/photos/photos.module";
 
 
 
@@ -58,6 +59,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         IonicStorageModule.forRoot(),
         IntroModule,
         SlideshowModule,
+        PhotosModule,
 
         ChecklistModule,
         IonicModule.forRoot ( MyApp )
@@ -77,7 +79,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
         CommonService,
         Keyboard,
         SimpleAlert,
-        FotoProvider,
+        FotoService,
         Data,
         LocalNotifications,
         File,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { RedditsService } from "../../app/service/reddits.service";
 import { Reddits } from "../reddits/reddits";
 import { CommonService } from "../../app/service/common.service";

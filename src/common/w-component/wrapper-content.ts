@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, Platform } from "ionic-angular";
 import { CommonService } from "../../app/service/common.service";
-import { Reddits } from "../../pages/reddits/reddits";
 
 @Component ( {
     selector : 'w-content',

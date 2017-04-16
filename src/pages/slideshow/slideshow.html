@@ -1,18 +1,33 @@
-<!--
-  Generated template for the Slideshow page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>Slideshow</ion-title>
+  <ion-navbar color="danger">
+    <ion-title>
+      <img width="30" height="30" src="assets/logo.png" />
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="playSlideshow()">
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
+<ion-content>
+  <ion-list>
 
+    <button ion-item *ngIf="!photoTaken" detail-none (click)="takePhoto()">
+      <img src="assets/images/smile.png" />
+    </button>
 
-<ion-content padding>
-
+    <ion-item-sliding *ngFor="let photo of photos">
+      <ion-item>
+        <img [src]="photo.image" />
+        <ion-badge item-right color="light">0 days ago</ion-badge>
+      </ion-item>
+      <ion-item-options>
+        <button ion-button icon-only color="light"
+                (click)="removePhoto(photo)">
+          <ion-icon  name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

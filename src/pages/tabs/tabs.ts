@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
-import { ContactPage } from '../contact/contact';
+
 import { HomePage } from '../home/home';
 import { Reddits } from "../reddits/reddits";
 import { Settings } from "../settings/settings";
+import { Slideshow } from "../slideshow/slideshow";
+import { Photos } from "../photos/photos";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -12,10 +13,12 @@ import { Settings } from "../settings/settings";
 export class TabsPage {
 
   tab1Root = HomePage;
-  tab2Root = AboutPage;
-  tab3Root = ContactPage;
+  tab2Root = Slideshow;
+  //tab3Root = ContactPage;
+  tab3Root = Photos;
   tab4Root = Reddits;
   tab5Root = Settings;
+
 
   constructor() {
 

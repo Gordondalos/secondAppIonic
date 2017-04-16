@@ -3,16 +3,16 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 /*
-  Generated class for the FotoProvider provider.
+  Generated class for the FotoService provider.
 
   See https://angular.io/docs/ts/latest/guide/dependency-injection.html
   for more info on providers and Angular 2 DI.
 */
 @Injectable()
-export class FotoProvider {
+export class FotoService {
 
   constructor(public http: Http) {
-    console.log('Hello FotoProvider Provider');
+    console.log('Hello FotoService Provider');
   }
 
 }
